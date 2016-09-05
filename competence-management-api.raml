@@ -20,9 +20,29 @@ mediaType:  application/json
       description: get one category
       responses:
         200:
+          body:
+            application/json:
+              example: |
+                {
+                  "id": "xxx",
+                  "name": "xxx"
+                }
         404:
     put:
+      body:
+        application/json:
+          example: |
+            {
+              "name": "Core Competence"
+            }
+      responses:
+        200:
+        400:
+        404:
     delete:
+      responses:
+        404:
+        204:
 /competences:
   post:
     description: create new competence
@@ -52,7 +72,8 @@ mediaType:  application/json
                   "category": {
                     "id": "xxx",
                     "name": "xxx"
-                  }
+                  },
+                  "behaviors": []
                 },
                 {
                   "id": "xxx",
@@ -61,7 +82,8 @@ mediaType:  application/json
                   "category": {
                     "id": "xxx",
                     "name": "xxx"
-                  }
+                  },
+                  "behaviors": []
                 }
               ]
   /{competenceId}:
@@ -69,9 +91,42 @@ mediaType:  application/json
       description: get one competence include all behaviors
       responses:
         200:
+          body:
+            application/json:
+              example: |
+                {
+                  "id": "xxx",
+                  "name": "xx",
+                  "description": "xxx",
+                  "category": {
+                    "id": "xxx",
+                    "name": "xxx"
+                  },
+                  "behaviors": [
+                    {
+                      "id": "xxx",
+                      "name": "xxx",
+                      "descriptoin": "xxx"
+                    }
+                  ]
+                }
         404:
     put:
+      body:
+        application/json:
+          example: |
+            {
+              "name": "Self Confidence",
+              "description": "A ....",
+              "category": "category_id"
+            }
+      responses:
+        200:
+        404:
     delete:
+      responses:
+        204:
+        404:
     /behaviors:
       post:
         description: create new behavior
@@ -83,7 +138,12 @@ mediaType:  application/json
                 "description": "xxx"
               }
       /{behaviorId}:
-        get:
-          description: get one behavior
         put:
+          responses:
+            200:
+            404:
+            400:
         delete:
+          responses:
+            204:
+            404:

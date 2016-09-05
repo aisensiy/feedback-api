@@ -11,23 +11,84 @@ mediaType:  application/json
         example: |
           {
             "name": "xxx",
-            "description": "xxx"
+            "description": "xxx",
+            "competences": []
           }
     responses:
       201:
       400:
   get:
     description: list all programs
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "count": 10,
+                "first": "xx",
+                "last": "",
+                "prev": "",
+                "next": "",
+                "items": [
+                  {
+                    "name": "",
+                    "description": ""
+                  }
+                ]
+              }
   /{programId}:
     get:
       description: get program info
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "name": "xx",
+                  "description": "xx",
+                  "competences": [
+                    {
+                      "id": "xx",
+                      "name": "xxx",
+                      "descriptoin": "xx",
+                      "category": {
+                        "id": "xx",
+                        "name": "xxx"
+                      },
+                      "patterns": [
+
+                      ]
+                    }
+                  ]
+                }
     put:
       description: update program info
+      body:
+        application/json:
+          example: |
+            {
+              "name": "xxx",
+              "description": "xxx",
+              "competences": []
+            }
+      responses:
+        200:
+        400:
     delete:
       description: remove unpublished program
+      responses:
+        204:
+        404:
+        409:
     /published:
       put:
         description: publish program
+        responses:
+          204:
+          404:
+          409:
     /assignments:
       post:
         description: add new assignment
@@ -43,17 +104,53 @@ mediaType:  application/json
           201:
           400:
     /users/{userId}:
-      /evidences:
+      /self_reflections:
         put:
-          description: edit evidences for this program
+          description: edit self reflections for this program
           body:
             application/json:
               example: |
                 {
-                  "evidences": []
+                  "self_reflections": ["123", "1312"]
                 }
         get:
-          description: show evidences for this user in this program
+          description: show self reflections for this user in this program
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    [
+                      {
+                        "id": "xxx",
+                        "createdAt": 123123123,
+                        "competence": {
+                          "id": "xxx",
+                          "name": "xxx",
+                          "description": "xxx"
+                        },
+                        "behavior": {
+                          "id": "xxx",
+                          "name": "xxx",
+                          "description": "xxx"
+                        },
+                        "evidences": [
+                          {
+                            "content": "xxx",
+                            "feedbacks": [
+                              {
+                                "author": {
+                                  "username": "xxx",
+                                  "nickname": "xxx"
+                                },
+                                "approved": true,
+                                "comment": "xxx"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
 
 /users/{userId}/assignments:
   get:
