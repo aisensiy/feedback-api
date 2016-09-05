@@ -1,0 +1,104 @@
+#%RAML 0.8
+title: Self Reflection API
+version: v1
+mediaType:  application/json
+
+/users/{userId}/self_reflections:
+  post:
+    description: create new self reflection
+    body:
+      application/json:
+        example: |
+          {
+            "behavior": "behavior id"
+          }
+    responses:
+      201:
+      400:
+  get:
+    description: list all self reflections
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "count": 10,
+                "prev": "xx",
+                "next": "xxx",
+                "first": "xxx",
+                "last": "xxx",
+                "items": [
+                  {
+                    "competence": {
+                      "id": "xxx",
+                      "name": "xxx",
+                      "description": "xxx"
+                    },
+                    "behavior": {
+                      "id": "xxx",
+                      "name": "xxx",
+                      "description": "xxx"
+                    },
+                    "evidences": [
+                      {
+                        "content": "xxx",
+                        "feedbacks": [
+                          {
+                            "author": {
+                              "username": "xxx",
+                              "nickname": "xxx"
+                            },
+                            "approved": true,
+                            "comment": "xxx"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+  /{selfReflectionId}:
+    get:
+      description: get one self reflection
+      responses:
+        200:
+        404:
+    /evidences:
+      post:
+        description: create new evidence
+        body:
+          application/json:
+            example: |
+              {
+                "content": "xxxx",
+                "witness": ["pzzheng", "scxu", "jksun"]
+              }
+        responses:
+          201:
+          404:
+      /{evidenceId}:
+        get:
+        /feedbacks:
+          post:
+            description: create new feedback
+            responses:
+              201:
+              400:
+          /{feedbackId}:
+            /rejected:
+              put:
+                body:
+                  application/json:
+                    example: |
+                      {
+                        "content": "xxx"
+                      }
+            /approved:
+              put:
+                body:
+                  application/json:
+                    example: |
+                      {
+                        "content": "xxx"
+                      }

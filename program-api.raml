@@ -1,0 +1,60 @@
+#%RAML 0.8
+title: Program API
+version: v1
+mediaType:  application/json
+
+/programs:
+  post:
+    description: create new program
+    body:
+      application/json:
+        example: |
+          {
+            "name": "xxx",
+            "description": "xxx"
+          }
+    responses:
+      201:
+      400:
+  get:
+    description: list all programs
+  /{programId}:
+    get:
+      description: get program info
+    put:
+      description: update program info
+    delete:
+      description: remove unpublished program
+    /published:
+      put:
+        description: publish program
+    /assignments:
+      post:
+        description: add new assignment
+        body:
+          application/json:
+            example: |
+              {
+                "username": "xxx",
+                "role": "coachee",
+                "coach": "xxx"
+              }
+        responses:
+          201:
+          400:
+    /users/{userId}:
+      /evidences:
+        put:
+          description: edit evidences for this program
+          body:
+            application/json:
+              example: |
+                {
+                  "evidences": []
+                }
+        get:
+          description: show evidences for this user in this program
+
+/users/{userId}/assignments:
+  get:
+    description: list all program assignment for one person
