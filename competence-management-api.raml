@@ -1,0 +1,89 @@
+#%RAML 0.8
+title: Competence Management API
+version: v1
+mediaType:  application/json
+
+/categories:
+  post:
+    description: create new category
+    body:
+      application/json:
+        example: |
+          {
+            "name": "Core Competence"
+          }
+    responses:
+      201:
+      400:
+  /{categoryId}:
+    get:
+      description: get one category
+      responses:
+        200:
+        404:
+    put:
+    delete:
+/competences:
+  post:
+    description: create new competence
+    body:
+      application/json:
+        example: |
+          {
+            "name": "Self Confidence",
+            "description": "A ....",
+            "category": "category_id"
+          }
+    responses:
+      201:
+      400:
+  get:
+    description: list competences
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "id": "xxx",
+                  "name": "Self Confidence",
+                  "description": "A ...",
+                  "category": {
+                    "id": "xxx",
+                    "name": "xxx"
+                  }
+                },
+                {
+                  "id": "xxx",
+                  "name": "Self Confidence",
+                  "description": "A ...",
+                  "category": {
+                    "id": "xxx",
+                    "name": "xxx"
+                  }
+                }
+              ]
+  /{competenceId}:
+    get:
+      description: get one competence include all behaviors
+      responses:
+        200:
+        404:
+    put:
+    delete:
+    /behaviors:
+      post:
+        description: create new behavior
+        body:
+          application/json:
+            example: |
+              {
+                "name": "xxx",
+                "description": "xxx"
+              }
+      /{behaviorId}:
+        get:
+          description: get one behavior
+        put:
+        delete:
