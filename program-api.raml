@@ -104,14 +104,14 @@ mediaType:  application/json
           201:
           400:
     /users/{userId}:
-      /self_reflections:
+      /evidences:
         put:
           description: edit self reflections for this program
           body:
             application/json:
               example: |
                 {
-                  "self_reflections": ["123", "1312"]
+                  "evidences": ["123", "1312"]
                 }
         get:
           description: show self reflections for this user in this program
@@ -122,31 +122,29 @@ mediaType:  application/json
                   example: |
                     [
                       {
-                        "id": "xxx",
-                        "createdAt": 123123123,
-                        "competence": {
+                        "content": "xxx",
+                        "self_reflection": {
                           "id": "xxx",
-                          "name": "xxx",
-                          "description": "xxx"
+                          "createdAt": 123123123,
+                          "competence": {
+                            "id": "xxx",
+                            "name": "xxx",
+                            "description": "xxx"
+                          },
+                          "behavior": {
+                            "id": "xxx",
+                            "name": "xxx",
+                            "description": "xxx"
+                          }
                         },
-                        "behavior": {
-                          "id": "xxx",
-                          "name": "xxx",
-                          "description": "xxx"
-                        },
-                        "evidences": [
+                        "feedbacks": [
                           {
-                            "content": "xxx",
-                            "feedbacks": [
-                              {
-                                "author": {
-                                  "username": "xxx",
-                                  "nickname": "xxx"
-                                },
-                                "approved": true,
-                                "comment": "xxx"
-                              }
-                            ]
+                            "author": {
+                              "username": "xxx",
+                              "nickname": "xxx"
+                            },
+                            "approved": true,
+                            "comment": "xxx"
                           }
                         ]
                       }
